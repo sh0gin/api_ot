@@ -77,11 +77,11 @@ class SiteController extends ActiveController
      *
      * @return string
      * 
-     */
 
+     */
     public function actionCertificate()
     {
-         $model = new NumberSertificat();
+        $model = new NumberSertificat();
         $model->clientId = Yii::$app->request->headers['clientId'];
         if ($model->load([ ...Yii::$app->request->post(), 'clientId' => Yii::$app->request->headers['clientId']], '') && $model->validate()) {
             $before_model = NumberSertificat::findOne(['course_id' => $model->course_id, 'student_id' => $model->student_id]);
@@ -100,5 +100,18 @@ class SiteController extends ActiveController
                 'errors' => $model->errors,
             ]);
         }
+    }
+
+    public function actionCheckSertificate() {
+        $sert = Yii::$app->request->post()['sertikate_number'];
+        $result = 'failed';
+
+        if ($sert[-1] == 1) {
+            $result = 'success';
+        }
+
+        return $this->asJson([
+            'status' => $result,
+        ]);
     }
 }

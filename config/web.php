@@ -86,6 +86,10 @@ $config = [
 
                 "POST create-sertificate" => 'site/certificate',
                 "OPTIONS create-sertificate" => 'site/options',
+
+                "POST check-sertificate" => 'site/check-sertificate',
+                "OPTIONS ccheck-sertificate" => 'site/options',
+                
             ],
         ]
     ],
